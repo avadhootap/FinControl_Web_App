@@ -1,5 +1,6 @@
 package com.app.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.pojos.Income;
+import com.app.pojos.IncomeCategoryType;
+import com.app.pojos.User;
 import com.app.repository.IncomeRepo;
 
 @Service
@@ -43,5 +46,29 @@ public class IncomeSeviceImpl implements IncomeService {
 		}
 		return null;
 	}
+
+	@Override
+	public List<Income> findIncomeByCategory(IncomeCategoryType getIncomeByCategory, User users) {
+		
+		return incomeRepo.findByCategoryTypeAndUsers(getIncomeByCategory, users);
+	}
+
+	@Override
+	public List<Income> findIncomeByAmount(double Amount, User users) {
+	
+		return incomeRepo.findByAmountAndUsers(Amount, users);
+	}
+
+	@Override
+	public List<Income> findIncomeByDate(LocalDate date, User users) {
+		return incomeRepo.findByDateAndUsers(date, users);
+	}
+
+	@Override
+	public List<Income> findIncomeByUser(User user) {
+		return incomeRepo.findByUsers(user);
+	}
+	
+
 
 }

@@ -1,5 +1,6 @@
 package com.app.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.app.pojos.Income;
+import com.app.pojos.IncomeCategoryType;
+import com.app.pojos.User;
 import com.app.service.IncomeService;
 
 @RestController
@@ -23,6 +26,26 @@ public class IncomeController {
 	@GetMapping
 	public List<Income>getAllIncome(){
 		return incomeserv.getAllIncome();
+	}
+	
+	@GetMapping("/getbycategory")
+	public List<Income>getIncomeByCategory(IncomeCategoryType getincome,User users){
+		return incomeserv.findIncomeByCategory(getincome, users);
+	}
+	
+	@GetMapping("/getbyAmount")
+	public List<Income>getIncomeByAmount(double Amount,User user){
+		return incomeserv.findIncomeByAmount(Amount, user);
+	}
+	
+	@PostMapping("/getbyDate")
+	public List<Income>getIncomeByDate(@RequestBody LocalDate date,User user){
+		return incomeserv.findIncomeByDate(date, user);
+	}
+	
+	@GetMapping("/getbyUser")
+	public List<Income>getIncomeByUser(User user){
+		return incomeserv.findIncomeByUser(user);
 	}
 	
 	@PostMapping
