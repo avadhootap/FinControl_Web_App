@@ -69,6 +69,20 @@ public class IncomeSeviceImpl implements IncomeService {
 		return incomeRepo.findByUsers(user);
 	}
 	
+	@Override
+	public Double getTotalExpenseByUserId(Long userId) {
+		return incomeRepo.getTotalExpenseByUserId(userId);
+	}
+
+	@Override
+	public List<Income> getUserIncomeSortedByAmount(Long userId) {
+		return incomeRepo.getUserIncomeSortedByAmount(userId);
+	}
+
+	@Override
+	public List<Income> getUserIncomeSortedByDate(Long userId) {
+		return incomeRepo.getUserIncomeSortedByDate(userId);
+	}
 
 
 }

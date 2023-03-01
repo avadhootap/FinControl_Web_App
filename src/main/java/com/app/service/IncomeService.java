@@ -24,5 +24,13 @@ public interface IncomeService {
 	List<Income> findIncomeByDate(LocalDate date,User users);
 	
 	List<Income> findIncomeByUser(User user);
+	
+	Double getTotalExpenseByUserId(Long userId);
+	
+	List<Income> getUserIncomeSortedByAmount(Long userId);
+	
+	List<Income> getUserIncomeSortedByDate(Long userId);
+	
+	
 
 }

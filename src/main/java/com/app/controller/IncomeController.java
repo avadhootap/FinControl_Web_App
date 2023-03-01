@@ -48,6 +48,21 @@ public class IncomeController {
 		return incomeserv.findIncomeByUser(user);
 	}
 	
+	@GetMapping("/getTotalIncome")
+	Double getTotalExpenseByUserId(Long userId) {
+		return incomeserv.getTotalExpenseByUserId(userId);
+	}
+	
+	@GetMapping("/getIncomeSortedByAmount")
+	List<Income> getUserExpensesSortedByAmount(Long userId){
+		return incomeserv.getUserIncomeSortedByAmount(userId);
+	}
+	
+	@GetMapping("/getIncomeSortedByDate")
+	List<Income> getUserExpensesSortedByDate(Long userId){
+		return incomeserv.getUserIncomeSortedByDate(userId);
+	}
+	
 	@PostMapping
 	Income addIncome(@RequestBody Income addIncome) {
 		return incomeserv.addIncome(addIncome);
