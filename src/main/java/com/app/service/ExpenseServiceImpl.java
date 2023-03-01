@@ -72,6 +72,22 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return exprepo.findByUser(user);
 	}
 	
+	@Override
+	public Double getTotalExpenseByUserId(Long userId) {
+		// TODO Auto-generated method stub
+		return exprepo.getTotalExpenseByUserId(userId);
+	}
+	
+	@Override
+	public List<Expense> getgetUserExpensesSortedByAmount(Long userId) {
+		return exprepo.getUserExpensesSortedByAmount(userId);
+	}
+	
+	@Override
+	public List<Expense> getgetUserExpensesSortedByDate(Long userId) {
+		return exprepo.getUserExpenseSortedByDate(userId);
+	}
+	
 	
 
 }

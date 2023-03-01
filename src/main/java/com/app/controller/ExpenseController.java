@@ -42,9 +42,21 @@ public class ExpenseController {
 		return expserv.getExpenseByAmount(amount,user);
 	}
 	
+	
+	
 	@PostMapping("/getExpByCategory")
 	public List<Expense> getExpenseByCategory(@RequestBody ExpenseCategoryType getcategory, User user) {
 		return expserv.getExpenseByCategory(getcategory, user);
+	}
+	
+	@GetMapping("/getTotalExp")
+	public Double getTotalExpenseByUserId(Long userId) {
+		return expserv.getTotalExpenseByUserId(userId);
+	}
+	
+	@GetMapping("/getExpSortedByAmount")
+	List<Expense>getExpSortedByAmount(Long UserId){
+		return expserv.getgetUserExpensesSortedByAmount(UserId);
 	}
 	
 	@PostMapping
@@ -55,6 +67,11 @@ public class ExpenseController {
 	@GetMapping("/getUserExp")
 	public List<Expense>getAllUserExp(User user){
 		return expserv.getByUser(user);
+	}
+	
+	@GetMapping("/getExpSortedByDate")
+	List<Expense> getUserSortedByAmount(Long UserId){
+		return expserv.getgetUserExpensesSortedByDate(UserId);
 	}
 	
 	@DeleteMapping("/{id}")

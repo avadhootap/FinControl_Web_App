@@ -26,5 +26,11 @@ public interface ExpenseService {
 	List<Expense> getExpenseByAmount(double amount,User user);
 	
 	List<Expense> getByUser(User user);
+	
+	public Double getTotalExpenseByUserId(Long userId);
+	
+	List<Expense>getgetUserExpensesSortedByAmount(Long userId);
+	
+	List<Expense>getgetUserExpensesSortedByDate(Long userId);
 
 }
