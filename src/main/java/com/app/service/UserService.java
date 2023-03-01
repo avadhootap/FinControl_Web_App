@@ -3,6 +3,9 @@ package com.app.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.app.dto.SignInDto;
+import com.app.dto.UpdateNames;
+import com.app.dto.UpdatePassword;
 import com.app.pojos.User;
 
 public interface UserService {
@@ -15,6 +18,12 @@ public interface UserService {
 	
 	User updateUser(User updateUser);
 	
-	Optional<User> getUserById(Long id);
+	User getUserById(Long id);
+	
+	User findByEmailAndPassword(SignInDto dto);
+	
+	public String updateNames(Long id, UpdateNames updatename);
+	
+	public String updatePassword(Long id,UpdatePassword updatepassword);
 
 }
