@@ -32,5 +32,7 @@ public interface ExpenseService {
 	List<Expense>getgetUserExpensesSortedByAmount(Long userId);
 	
 	List<Expense>getgetUserExpensesSortedByDate(Long userId);
+	
+	public List<Expense> getExpensesByUserAndDateRange(Long userId, LocalDate startDate, LocalDate endDate);
 
 }

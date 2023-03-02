@@ -87,6 +87,12 @@ public class ExpenseServiceImpl implements ExpenseService {
 	public List<Expense> getgetUserExpensesSortedByDate(Long userId) {
 		return exprepo.getUserExpenseSortedByDate(userId);
 	}
+
+	@Override
+	public List<Expense> getExpensesByUserAndDateRange(Long userId, LocalDate startDate, LocalDate endDate) {
+		
+		return exprepo.findExpensesByUserAndDateRange(userId, startDate, endDate);
+	}
 	
 	
 

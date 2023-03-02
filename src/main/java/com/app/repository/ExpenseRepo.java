@@ -31,4 +31,7 @@ public interface ExpenseRepo extends JpaRepository<Expense, Long> {
 	@Query("SELECT e FROM Expense e WHERE e.user.id = :userId ORDER BY e.date ASC")
 	List<Expense> getUserExpenseSortedByDate(@Param("userId") Long userId);
 	
+	  @Query("SELECT e FROM Expense e WHERE e.user.id = :userId AND e.date BETWEEN :startDate AND :endDate")
+	    List<Expense> findExpensesByUserAndDateRange(@Param("userId") Long userId, @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+	
 }

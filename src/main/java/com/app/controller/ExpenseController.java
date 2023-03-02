@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.pojos.Expense;
@@ -57,6 +58,11 @@ public class ExpenseController {
 	@GetMapping("/getExpSortedByAmount")
 	List<Expense>getExpSortedByAmount(Long UserId){
 		return expserv.getgetUserExpensesSortedByAmount(UserId);
+	}
+	
+	@GetMapping("/getreport")
+	public List<Expense> getExpensesByUserAndDateRange( Long userId,String startDate, String endDate){
+		return expserv.getExpensesByUserAndDateRange(userId,LocalDate.parse(startDate),LocalDate.parse(endDate) );
 	}
 	
 	@PostMapping
