@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.app.pojos.User;
 //import com.app.pojos.Expense;
 import com.app.service.ExpenseService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/Expense")
 public class ExpenseController {
@@ -27,7 +29,8 @@ public class ExpenseController {
 	@Autowired
 	private ExpenseService expserv;
 	
-	@GetMapping
+	
+	@GetMapping("/expense")
 	public List<Expense>getAllExpense(){
 		return expserv.getAllExpense();
 	}
@@ -65,7 +68,7 @@ public class ExpenseController {
 		return expserv.getExpensesByUserAndDateRange(userId,LocalDate.parse(startDate),LocalDate.parse(endDate) );
 	}
 	
-	@PostMapping
+	@PostMapping("/addexpense")
 	Expense addExpense(@RequestBody Expense addExpense) {
 		return expserv.addExpense(addExpense);
 	}
@@ -80,7 +83,7 @@ public class ExpenseController {
 		return expserv.getgetUserExpensesSortedByDate(UserId);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/deleteExpense/{id}")
 	String deleteuser(@PathVariable Long id) {
 		return expserv.deleteExpense(id);
 		

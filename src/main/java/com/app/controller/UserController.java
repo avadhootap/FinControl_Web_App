@@ -12,6 +12,7 @@ import com.app.dto.UpdatePassword;
 import com.app.pojos.User;
 import com.app.service.UserService;
 
+@CrossOrigin(origins ="http://localhost:3000")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -39,7 +40,7 @@ public class UserController {
 		return userservices.updatePassword(id, updatepassword);
 	}
 	
-	@PostMapping
+	@PostMapping("/adduser")
 	User addUser(@RequestBody User user) {
 		return userservices.addUser(user);
 	}

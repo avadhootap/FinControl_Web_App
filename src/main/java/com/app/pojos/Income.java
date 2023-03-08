@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name="Income")
@@ -24,6 +26,7 @@ public class Income {
 	
 	@Column(name = "Amount")
 	private double amount;
+	
 	
 	@Column(name = "Date")
 	private LocalDate date;

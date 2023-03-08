@@ -38,8 +38,10 @@ public class User extends BaseEntity1{
     @OneToMany(mappedBy = "users",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Income>income=new ArrayList<Income>();
     
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Budget>budget=new ArrayList<Budget>();
     
-
+   
 	public User(String firstName, String lastname, String city, String email, String password, String confirmPassword) {
 		super();
 		this.firstName = firstName;

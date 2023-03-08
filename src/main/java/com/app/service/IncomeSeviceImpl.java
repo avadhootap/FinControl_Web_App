@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.dto.UpdateIncomeDto;
 import com.app.pojos.Income;
 import com.app.pojos.IncomeCategoryType;
 import com.app.pojos.User;
@@ -84,5 +85,25 @@ public class IncomeSeviceImpl implements IncomeService {
 		return incomeRepo.getUserIncomeSortedByDate(userId);
 	}
 
+	@Override
+	public Income getIncomeById(Long id) {
+		if(incomeRepo.existsById(id)) {
+		return incomeRepo.findById(id).get();	
+	}
+		return null;
+	}
+
+	@Override
+	public String updateIncomeData(Long id, UpdateIncomeDto updateIncomeData) {
+		if(incomeRepo.existsById(id)) {
+			Income updateIncome=getIncomeById(id);
+			updateIncome.setAmount(updateIncomeData.getAmount());
+			updateIncome.setDate(updateIncomeData.getDate());
+			updateIncome.setDescription(updateIncomeData.getDescription());
+			updateIncome.setCategoryType(updateIncomeData.getCategoryType());
+			return "Updated SucessFully...";
+		}
+		return "Error Updating Check Id";
+	}
 
 }

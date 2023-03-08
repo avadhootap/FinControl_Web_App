@@ -3,6 +3,7 @@ package com.app.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.app.dto.UpdateIncomeDto;
 import com.app.pojos.Income;
 import com.app.pojos.IncomeCategoryType;
 import com.app.pojos.User;
@@ -30,6 +31,10 @@ public interface IncomeService {
 	List<Income> getUserIncomeSortedByAmount(Long userId);
 	
 	List<Income> getUserIncomeSortedByDate(Long userId);
+	
+	Income getIncomeById(Long id);
+	
+	public String updateIncomeData(Long id,UpdateIncomeDto updateIncomeData);
 	
 	
 

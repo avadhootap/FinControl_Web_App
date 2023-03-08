@@ -24,7 +24,7 @@ public class Expense {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Expenseid;
+	private Long id;
 	
 	@Column(name = "Amount")
 	private double amount;
@@ -43,9 +43,9 @@ public class Expense {
 	@JoinColumn(name = "UserId")
 	private User user;
 
-	public Expense(Long expenseid, double amount, LocalDate date, String description, ExpenseCategoryType categoryType) {
+	public Expense(Long id, double amount, LocalDate date, String description, ExpenseCategoryType categoryType) {
 		super();
-		Expenseid = expenseid;
+		this.id = id;
 		this.amount = amount;
 		this.date = date;
 		this.description = description;
@@ -56,12 +56,12 @@ public class Expense {
 		super();
 	}
 
-	public Long getExpenseid() {
-		return Expenseid;
+	public Long getId() {
+		return id;
 	}
 
-	public void setExpenseid(Long expenseid) {
-		Expenseid = expenseid;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public double getAmount() {
@@ -96,20 +96,12 @@ public class Expense {
 		this.categoryType = categoryType;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	@Override
 	public String toString() {
-		return "Expense [Expenseid=" + Expenseid + ", amount=" + amount + ", date=" + date + ", description="
-				+ description + ", categoryType=" + categoryType + ", user=" + user + "]";
+		return "Expense [id=" + id + ", amount=" + amount + ", date=" + date + ", description=" + description
+				+ ", categoryType=" + categoryType + "]";
 	}
-
+	
 	
 
 	
