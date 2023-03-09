@@ -42,7 +42,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 
 	@Override
 	public Expense updateExpense(Expense updateExp) {
-		if(exprepo.existsById(updateExp.getId() )) {
+		if(exprepo.existsById(updateExp.getExpenseid() )) {
 		return exprepo.save(updateExp);
 	}
 	return null;

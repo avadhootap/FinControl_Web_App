@@ -89,8 +89,8 @@ public class ExpenseController {
 		
 	}
 	
-	@PutMapping
-	Expense updateExpense(@RequestBody Expense updateexp) {
+	@PutMapping("/updateexpense/{id}")
+	Expense updateExpense(@PathVariable Long id, @RequestBody Expense updateexp) {
 		return expserv.updateExpense(updateexp);
 	}
 }

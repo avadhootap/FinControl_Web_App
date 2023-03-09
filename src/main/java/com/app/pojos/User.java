@@ -1,7 +1,9 @@
 package com.app.pojos;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -38,7 +40,7 @@ public class User extends BaseEntity1{
     @OneToMany(mappedBy = "users",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Income>income=new ArrayList<Income>();
     
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "buser",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Budget>budget=new ArrayList<Budget>();
     
    
@@ -113,6 +115,7 @@ public class User extends BaseEntity1{
 		return "User [firstName=" + firstName + ", lastname=" + lastname + ", city=" + city + ", email=" + email
 				+ ", password=" + password + ", confirmPassword=" + confirmPassword + "]";
 	}
-    
-    
-}	
+
+
+
+	}	

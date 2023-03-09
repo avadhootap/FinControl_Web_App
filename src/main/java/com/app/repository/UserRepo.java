@@ -9,5 +9,7 @@ import com.app.pojos.User;
 public interface UserRepo extends JpaRepository<User, Long> {
 	
 	User findByEmailAndPassword(String email, String password);
+	
+	User findByEmail(String email);
 
 }

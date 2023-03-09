@@ -40,7 +40,7 @@ public class Budget {
 	
 	@ManyToOne
 	@JoinColumn(name="UserId")
-	private User user;
+	private User buser;
 
 	public Budget(Long id, String description, BudgetType budgetType, Double b_limit, LocalDate startDate,
 			LocalDate endDate) {
