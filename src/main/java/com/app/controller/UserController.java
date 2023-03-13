@@ -25,18 +25,18 @@ public class UserController {
 		return userservices.getAllUsers();
 	}
 	
-	@GetMapping("/updateName")
-	public String updateNames(Long id, UpdateNames updatename) {
+	@PutMapping("/updateName/{id}")
+	public String updateNames(@PathVariable Long id,@RequestBody UpdateNames updatename) {
 		return userservices.updateNames(id, updatename);
 	}
 	
 	@GetMapping("/signin")
-	User findByEmailAndPassword(SignInDto dto) {
+	Optional<User> findByEmailAndPassword(SignInDto dto) {
 		return userservices.findByEmailAndPassword(dto);
 	}
 	
-	@GetMapping("/Changepassword")
-	public String updatePassword(Long id, UpdatePassword updatepassword) {
+	@PutMapping("/Changepassword/{id}")
+	public String updatePassword(@PathVariable Long id,@RequestBody UpdatePassword updatepassword) {
 		return userservices.updatePassword(id, updatepassword);
 	}
 	

@@ -20,7 +20,7 @@ public interface UserService {
 	
 	User getUserById(Long id);
 	
-	User findByEmailAndPassword(SignInDto dto);
+	Optional<User> findByEmailAndPassword(SignInDto dto);
 	
 	public String updateNames(Long id, UpdateNames updatename);
 	

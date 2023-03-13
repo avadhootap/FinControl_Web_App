@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.app.dto.SignInDto;
@@ -21,6 +22,8 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserRepo userrepo;
      
+	@Autowired
+	private PasswordEncoder encoder;
 
 	@Override
 	public List<User> getAllUsers() {
@@ -29,6 +32,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User addUser(User adduser) {
+		adduser.setPassword(encoder.encode(adduser.getPassword()));
 		return userrepo.save(adduser);
 	}
 
@@ -68,7 +72,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User findByEmailAndPassword(SignInDto dto) {
+	public Optional<User> findByEmailAndPassword(SignInDto dto) {
 		return userrepo.findByEmailAndPassword(dto.getEmail(), dto.getPassword());
 	}
 

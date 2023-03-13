@@ -13,6 +13,7 @@ import com.app.pojos.Income;
 import com.app.pojos.IncomeCategoryType;
 import com.app.pojos.User;
 import com.app.repository.IncomeRepo;
+import com.app.repository.UserRepo;
 
 @Service
 @Transactional
@@ -20,6 +21,9 @@ public class IncomeSeviceImpl implements IncomeService {
 	
 	@Autowired
 	private IncomeRepo incomeRepo; 
+	
+	@Autowired
+	private UserRepo userrepo;
 
 	@Override
 	public List<Income> getAllIncome() {
@@ -27,7 +31,8 @@ public class IncomeSeviceImpl implements IncomeService {
 	}
 
 	@Override
-	public Income addIncome(Income addIncome) {
+	public Income addIncome(Income addIncome)
+	{ 
 		return incomeRepo.save(addIncome);
 	}
 
@@ -71,8 +76,8 @@ public class IncomeSeviceImpl implements IncomeService {
 	}
 	
 	@Override
-	public Double getTotalExpenseByUserId(Long userId) {
-		return incomeRepo.getTotalExpenseByUserId(userId);
+	public Double getTotalIncomeByUserId(Long id) {
+		return incomeRepo.getTotalExpenseByUserId(id);
 	}
 
 	@Override
@@ -104,6 +109,19 @@ public class IncomeSeviceImpl implements IncomeService {
 			return "Updated SucessFully...";
 		}
 		return "Error Updating Check Id";
+	}
+
+	@Override
+	public List<Income> getIncomeListById(Long id) {
+		User user=userrepo.findById(id).get();
+		return incomeRepo.findByUsers(user);
+	}
+
+	@Override
+	public Income addIncomeByUserId(Long id, Income addincome) {
+		User user=userrepo.findById(id).get();
+		addincome.setUsers(user);
+		return incomeRepo.save(addincome);
 	}
 
 }

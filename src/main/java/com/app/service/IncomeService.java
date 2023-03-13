@@ -26,7 +26,7 @@ public interface IncomeService {
 	
 	List<Income> findIncomeByUser(User user);
 	
-	Double getTotalExpenseByUserId(Long userId);
+	Double getTotalIncomeByUserId(Long id);
 	
 	List<Income> getUserIncomeSortedByAmount(Long userId);
 	
@@ -34,7 +34,11 @@ public interface IncomeService {
 	
 	Income getIncomeById(Long id);
 	
+	List<Income> getIncomeListById(Long id);
+	
 	public String updateIncomeData(Long id,UpdateIncomeDto updateIncomeData);
+	
+	Income addIncomeByUserId(Long id,Income addincome);
 	
 	
 

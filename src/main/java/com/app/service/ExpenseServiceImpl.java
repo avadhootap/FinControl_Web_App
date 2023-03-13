@@ -8,11 +8,13 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.dto.UpdateExpenseDto;
 import com.app.pojos.Expense;
 import com.app.pojos.ExpenseCategoryType;
 import com.app.pojos.User;
 //import com.app.pojos.Expense;
 import com.app.repository.ExpenseRepo;
+import com.app.repository.UserRepo;
 
 @Service
 @Transactional
@@ -20,6 +22,9 @@ public class ExpenseServiceImpl implements ExpenseService {
 	
 	@Autowired
 	private ExpenseRepo exprepo;
+	
+	@Autowired
+	private UserRepo userRepo;
 
 	@Override
 	public List<Expense> getAllExpense() {
@@ -42,7 +47,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 
 	@Override
 	public Expense updateExpense(Expense updateExp) {
-		if(exprepo.existsById(updateExp.getExpenseid() )) {
+		if(exprepo.existsById(updateExp.getId() )) {
 		return exprepo.save(updateExp);
 	}
 	return null;
@@ -72,6 +77,8 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return exprepo.findByUser(user);
 	}
 	
+	
+	
 	@Override
 	public Double getTotalExpenseByUserId(Long userId) {
 		// TODO Auto-generated method stub
@@ -93,7 +100,40 @@ public class ExpenseServiceImpl implements ExpenseService {
 		
 		return exprepo.findExpensesByUserAndDateRange(userId, startDate, endDate);
 	}
-	
-	
+
+	@Override
+	public Expense getExpenseById(Long id) {
+		if(exprepo.existsById(id)) {
+		return exprepo.findById(id).get();
+		}
+		return null;
+	}
+
+	@Override
+	public String UpdateExpenseData(Long id, UpdateExpenseDto dto) {
+		if(exprepo.existsById(id)) {
+			Expense UpdateExp=getExpenseById(id);
+			UpdateExp.setAmount(dto.getAmount());
+			UpdateExp.setDate(dto.getDate());
+			UpdateExp.setDescription(dto.getDescription());
+			UpdateExp.setCategoryType(dto.getCategoryType());
+			return "Updated SucessFully...";
+		}
+		return "Error Updating Check Id";
+	}
+
+	@Override
+	public List<Expense> getExpenseListByUserId(Long id) {
+		// TODO Auto-generated method stub
+		User user = userRepo.findById(id).get();
+		return exprepo.findByUser(user);
+	}
+
+	@Override
+	public Expense addExpenseByUserId(Long id, Expense addExpense) {
+		User user=userRepo.findById(id).get();
+		addExpense.setUser(user);
+		return exprepo.save(addExpense);
+	}
 
 }

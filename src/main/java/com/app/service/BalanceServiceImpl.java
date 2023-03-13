@@ -20,10 +20,10 @@ public class BalanceServiceImpl implements BalanceService {
 	private IncomeRepo incomerepo;
 
 	@Override
-	public Double getBalance(User user) {
+	public Double getBalance(Long id) {
 		
-		Double totalExpense = expenserepo.getTotalExpenseByUserId(user.getId());
-		Double totalIncome = incomerepo.getTotalExpenseByUserId(user.getId());
+		Double totalExpense = expenserepo.getTotalExpenseByUserId(id);
+		Double totalIncome = incomerepo.getTotalExpenseByUserId(id);
 		
 		if (totalExpense == null) {
             totalExpense = 0.0;

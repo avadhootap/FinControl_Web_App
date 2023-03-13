@@ -52,19 +52,19 @@ public class IncomeController {
 		return incomeserv.findIncomeByUser(user);
 	}
 	
-	@GetMapping("/getTotalIncome")
-	Double getTotalExpenseByUserId(Long userId) {
-		return incomeserv.getTotalExpenseByUserId(userId);
+	@GetMapping("/getTotalIncome/{id}")
+	Double getTotalExpenseByUserId(@PathVariable Long id) {
+		return incomeserv.getTotalIncomeByUserId(id);
 	}
 	
-	@GetMapping("/getIncomeSortedByAmount")
-	List<Income> getUserExpensesSortedByAmount(Long userId){
-		return incomeserv.getUserIncomeSortedByAmount(userId);
+	@GetMapping("/getIncomeSortedByAmount/{id}")
+	List<Income> getUserExpensesSortedByAmount(@PathVariable Long id){
+		return incomeserv.getUserIncomeSortedByAmount(id);
 	}
 	
-	@GetMapping("/getIncomeSortedByDate")
-	List<Income> getUserExpensesSortedByDate(Long userId){
-		return incomeserv.getUserIncomeSortedByDate(userId);
+	@GetMapping("/getIncomeSortedByDate/{id}")
+	List<Income> getUserExpensesSortedByDate(@PathVariable Long id){
+		return incomeserv.getUserIncomeSortedByDate(id);
 	}
 	
 	@PostMapping("/addincome")
@@ -90,6 +90,16 @@ public class IncomeController {
 	@PutMapping("/updateincomedata/{id}")
 	String updateIncomedata(@PathVariable Long id, @RequestBody UpdateIncomeDto updateIncomdata) {
 		return incomeserv.updateIncomeData(id, updateIncomdata);
+	}
+	@GetMapping("/getIncomeListByUser/{id}")
+	List<Income> getIncomeListById(@PathVariable Long id){
+		return incomeserv.getIncomeListById(id);
+	}
+	
+	@PostMapping("/AddIncomeById/{id}")
+	Income addIncomeByUserId(@PathVariable Long id,@RequestBody Income addincome) {
+		return incomeserv.addIncomeByUserId(id, addincome);
+		
 	}
 
 }
